@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Question from './Question';
 import Result from './Result';
-import { getQuestions } from '../api/calls';
+import { getQuestions, postResult } from '../api/calls';
 
 function QuestionScreen() {
   const [started, setStarted] = useState(false);
@@ -15,14 +15,14 @@ function QuestionScreen() {
   },[])
 
   const fetchQuestions = async () => {
-    const response = getQuestions();
+    const response = await getQuestions();
     setQuestions(response.data)
     return;
   }
 
-  const postResult = async () => {
+  const fetchResult = async () => {
     const sortedAnswers = answers.sort((a,b) => a.id - b.id)
-    const response = postResult(sortedAnswers);
+    const response = await postResult(sortedAnswers);
     const sortedResult = response.data.sort((a,b) => b.percentage - a.percentage)
     setResult(sortedResult)
     return;
@@ -34,7 +34,7 @@ function QuestionScreen() {
         Get started
     </div> : <div className='flex flex-col gap-10 items-center'>
       {questions.map((item,index) => index < currentQuestion ? <Question key={index} questionsLength={questions.length} index={index} question={item} setCurrentQuestion={setCurrentQuestion} setAnswer={(answer) => setAnswers((prev) => prev?.filter((val) => val?.id === item.id).length === 0 ? [...prev, {id: item.id, question: item.question, answer:answer}] : [...prev.filter(val => val?.id !== item.id), {id: item.id, question: item.question, answer:answer} ])} /> : null)}
-      {questions.length === currentQuestion - 1 ? <div onClick={() => postResult()} className='py-2 text-center w-60 sm:w-80 bg-[#f75204] text-white rounded-xl text-lg cursor-pointer ease-in-out duration-150 hover:bg-[#fda880]'>{!result ? "Get result!" : "Update result!"}</div> : null}
+      {questions.length === currentQuestion - 1 ? <div onClick={() => fetchResult()} className='py-2 text-center w-60 sm:w-80 bg-[#f75204] text-white rounded-xl text-lg cursor-pointer ease-in-out duration-150 hover:bg-[#fda880]'>{!result ? "Get result!" : "Update result!"}</div> : null}
     </div> }
     {result ? <Result result={result} /> : null}
     </div>
