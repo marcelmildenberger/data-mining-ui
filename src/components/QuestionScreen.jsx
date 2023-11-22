@@ -1,38 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import Question from './Question';
 import Result from './Result';
-
-const mockResult = [{id:1, partyName: "FDP", percentage: 0.2},{id:2, partyName: "SPD", percentage: 0.3}, {id:3, partyName: "Bündnis90", percentage: 0.5}, {id:4, partyName: "CDU&CSU", percentage: 0.1}]
-const mockData = [{id: 1, question: "Yes or No?"}, {id: 2, question: "Yes or Yes?"}, {id: 3, question: "No or No?"}, {id: 1, question: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."}]
+import { getQuestions } from '../api/calls';
 
 function QuestionScreen() {
   const [started, setStarted] = useState(false);
   const [questions, setQuestions] = useState([]);
-  // eslint-disable-next-line
   const [answers, setAnswers] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(1)
   const [result, setResult] = useState(null);
-
 
   useEffect(() => {
     fetchQuestions();
   },[])
 
-  
   const fetchQuestions = async () => {
-    setQuestions(mockData)
+    const response = getQuestions();
+    setQuestions(response.data)
     return;
   }
 
   const postResult = async () => {
-    // eslint-disable-next-line
     const sortedAnswers = answers.sort((a,b) => a.id - b.id)
-    const sortedResult = mockResult.sort((a,b) => b.percentage - a.percentage)
+    const response = postResult(sortedAnswers);
+    const sortedResult = response.data.sort((a,b) => b.percentage - a.percentage)
     setResult(sortedResult)
     return;
   }
-
-
 
   return (
     <div className='mt-10 pb-40'>
