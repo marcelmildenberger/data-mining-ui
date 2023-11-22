@@ -7,6 +7,7 @@ const mockData = [{id: 1, question: "Yes or No?"}, {id: 2, question: "Yes or Yes
 function QuestionScreen() {
   const [started, setStarted] = useState(false);
   const [questions, setQuestions] = useState([]);
+  // eslint-disable-next-line
   const [answers, setAnswers] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [result, setResult] = useState(null);
@@ -17,11 +18,15 @@ function QuestionScreen() {
     setQuestions(mockData)
   },[])
 
+  // eslint-disable-next-line
   const fetchQuestions = async () => {return null;}
 
+  // eslint-disable-next-line
   const fetchResult = async () => {
     setResult(null)
     return null;}
+
+    console.log(answers)
 
   return (
     <div className='m-20'>
@@ -34,4 +39,4 @@ function QuestionScreen() {
   )
 }
 
-export default QuestionScreen
+export default QuestionScreen7
