@@ -8,8 +8,7 @@ const mockData = [
 {id: 6, title: "German Forces", question: "Armed German forces should be deployed to secure stabilization, prevent the resurgence of ISIS, and promote reconciliation in Iraq and Syria."}, 
 {id: 7, title: "Organ Donation", question: "The readiness of documents on organ donation should be strengthened."}, 
 {id: 8, title: "Extremism Surveillance", question: "There should be enhanced surveillance tools in the face of evolving extremism, allowing targeted scrutiny of individuals, improving collaboration with the Military Counterintelligence Service, and implementing surveillance in telecommunications at the source."},
-{id: 9, title: "Piglet Castration", question: "The transition period for non-anesthetic piglet castration should be extended by two years. This involves submitting regulations, reporting progress on alternative methods and animal anesthesia."},
-{id: 10, title: "Piglet Castration", question: "The transition period for non-anesthetic piglet castration should be extended by two years. This involves submitting regulations, reporting progress on alternative methods and animal anesthesia."}]
+{id: 9, title: "Piglet Castration", question: "The transition period for non-anesthetic piglet castration should be extended by two years. This involves submitting regulations, reporting progress on alternative methods and animal anesthesia."}]
 
 export async function getQuestions() {
     return { status: 200, data: mockData }
