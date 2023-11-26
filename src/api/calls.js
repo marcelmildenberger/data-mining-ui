@@ -1,25 +1,27 @@
-const baseURL = "http://localhost:8080"
-const mockResult = [{id:1, partyName: "FDP", percentage: 0.2},{id:2, partyName: "SPD", percentage: 0.3}, {id:3, partyName: "Bündnis90", percentage: 0.5}, {id:4, partyName: "CDU&CSU", percentage: 0.1}]
-const mockData = [{id: 1, question: "Yes or No?"}, {id: 2, question: "Yes or Yes?"}, {id: 3, question: "No or No?"}, {id: 1, question: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."}]
+const baseURL = "http://localhost:8081"
+const mockData = [
+{id: 1, title: "Immigration", question: "Germany should implement specific reforms focused on skilled immigration. This involves transparent residency regulations, standardized definitions, and simpler administrative processes."}, 
+{id: 2, title: "Infrastructure Support", question: "Financial support from the state for the federal states should be increased, including municipal education infrastructure, social housing, and road construction."}, 
+{id: 3, title: "Rent Cap", question: "There should also be a rent cap for subsidized new housing construction."}, 
+{id: 4, title: "Religious Advocacy", question: "The advocacy for freedom of religion and belief worldwide should be strengthened."},
+{id: 5, title: "Asylum Policy", question: "Georgia, Algeria, Morocco, and Tunisia should be classified as safe countries of origin, and a cut-off date rule regarding the continuation of vocational training or existing permitted employment for asylum seekers and tolerated individuals from these countries should be implemented."}, 
+{id: 6, title: "German Forces", question: "Armed German forces should be deployed to secure stabilization, prevent the resurgence of ISIS, and promote reconciliation in Iraq and Syria."}, 
+{id: 7, title: "Organ Donation", question: "The readiness of documents on organ donation should be strengthened."}, 
+{id: 8, title: "Extremism Surveillance", question: "There should be enhanced surveillance tools in the face of evolving extremism, allowing targeted scrutiny of individuals, improving collaboration with the Military Counterintelligence Service, and implementing surveillance in telecommunications at the source."},
+{id: 9, title: "Piglet Castration", question: "The transition period for non-anesthetic piglet castration should be extended by two years. This involves submitting regulations, reporting progress on alternative methods and animal anesthesia."},
+{id: 10, title: "Piglet Castration", question: "The transition period for non-anesthetic piglet castration should be extended by two years. This involves submitting regulations, reporting progress on alternative methods and animal anesthesia."}]
 
 export async function getQuestions() {
     return { status: 200, data: mockData }
-    const requestOptions = {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    };
-    const response = await fetch(baseURL + "/questions", requestOptions);
-    const data = await response.json();
-    return { status: response.status, data: data };
 }
 
 export async function postResult(requestBody) {
-    return { status: 200, data: mockResult }
     const requestOptions = {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify({type: requestBody.map((item) => item.answer)})
     };
-    const response = await fetch(baseURL + "/result", requestOptions);
+    const response = await fetch(baseURL + "/predict", requestOptions);
     const data = await response.json();
     return { status: response.status, data: data };
 }

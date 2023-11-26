@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Question from './Question';
 import Result from './Result';
 import { getQuestions, postResult } from '../api/calls';
+const parties = ["AFD", "CDU/CSU", "FDP", "GRÜNE", "LINKE", "SPD"]
 
 function QuestionScreen() {
   const [started, setStarted] = useState(false);
@@ -23,7 +24,8 @@ function QuestionScreen() {
   const fetchResult = async () => {
     const sortedAnswers = answers.sort((a,b) => a.id - b.id)
     const response = await postResult(sortedAnswers);
-    const sortedResult = response.data.sort((a,b) => b.percentage - a.percentage)
+    const formattedResponse = response.data.prediction.map((perc,index) => {return {id: index, partyName: parties[index], percentage: perc}})
+    const sortedResult = formattedResponse.sort((a,b) => b.percentage - a.percentage)
     setResult(sortedResult)
     return;
   }
