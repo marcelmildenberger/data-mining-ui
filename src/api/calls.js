@@ -1,4 +1,4 @@
-const baseURL = "http://3.79.233.45:8081"
+const baseURL = "http//:3.79.152.72:8081"
 const mockData = [
 {id: 1, title: "Immigration", question: "Germany should implement specific reforms focused on skilled immigration. This involves transparent residency regulations, standardized definitions, and simpler administrative processes."}, 
 {id: 2, title: "Infrastructure Support", question: "Financial support from the state for the federal states should be increased, including municipal education infrastructure, social housing, and road construction."}, 
