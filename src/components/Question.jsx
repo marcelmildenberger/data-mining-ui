@@ -10,7 +10,7 @@ function Question(props) {
   },[])
   return (
     <div className='flex flex-col items-center w-[250px] sm:w-[500px] md:w-[650px] border-2 p-4 shadow-lg border-gray-200'>
-      <div className='flex flex-row gap-1 text-lg font-bold'>{index+1}/9:<div>{question.title}</div></div>
+      <div className='flex flex-row gap-1 text-lg font-bold text-center'>{index+1}/9:<div>{question.title}</div></div>
       <div className='text-center text-md font-semibold mt-2 mb-4'>{question.question}</div>
       <div className='flex flex-row gap-2 sm:gap-4'>
         <CustomButton text="Yes" selected={selectedAnswer === 1} onClick={() => {setAnswer(1); 
