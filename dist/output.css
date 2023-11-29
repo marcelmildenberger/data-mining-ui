@@ -569,6 +569,14 @@ video {
   width: 100%;
 }
 
+.w-80 {
+  width: 20rem;
+}
+
+.w-\[300px\] {
+  width: 300px;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -583,6 +591,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .gap-1 {

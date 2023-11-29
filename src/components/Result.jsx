@@ -6,10 +6,9 @@ Chart.register(CategoryScale, LinearScale, BarElement);
 function Result(props) {
   const {result} = props;
   return (
-    <div className='mt-10 flex flex-col items-center'>
+    <div className='mt-10 flex flex-col items-center justify-center'>
 
  <div className='font-bold text-4xl border-b-2 w-40 text-center mb-8'>Result</div>
-      <div className="chart-container">
       <Bar
         data={
           {
@@ -41,7 +40,6 @@ function Result(props) {
         }
         }
       />
-    </div>
     </div>
   )
 }
